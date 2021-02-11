@@ -15,4 +15,9 @@
         android:name="com.cunha.myserieslist.ui.serie.form.FormSerieFragment"
         android:label="form_serie_fragment"
         tools:layout="@layout/form_serie_fragment" />
+    <fragment
+        android:id="@+id/configFragment"
+        android:name="com.cunha.myserieslist.ui.serie.config.ConfigFragment"
+        android:label="config_fragment"
+        tools:layout="@layout/config_fragment" />
 </navigation>

@@ -40,6 +40,9 @@ class ListSerieFragment : Fragment() {
         fabFormSerie.setOnClickListener{
             findNavController().navigate(R.id.formSerieFragment)
         }
+        fabConfig.setOnClickListener{
+            findNavController().navigate(R.id.configFragment)
+        }
     }
 
 }
