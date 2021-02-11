@@ -1,6 +1,7 @@
 package com.cunha.myserieslist.data
 
 import com.cunha.myserieslist.model.Serie
+import kotlinx.coroutines.delay
 
 class Repositorio {
 
@@ -10,7 +11,10 @@ class Repositorio {
         Serie("Cobra Kai", "02/05/2018", "Uns jovens e uns velho lutando Karate.", "9")
     )
 
-    fun all(): List<Serie> = series
+    suspend fun all(): List<Serie>{
+        delay(5000)
+        return series
+    }
 
     companion object {
         private var instance: Repositorio? = null

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
 import kotlinx.android.synthetic.main.list_serie_fragment.*
 
@@ -36,8 +37,9 @@ class ListSerieFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        // TODO: Use the ViewModel
+        fabFormSerie.setOnClickListener{
+            findNavController().navigate(R.id.formSerieFragment)
+        }
     }
 
 }
