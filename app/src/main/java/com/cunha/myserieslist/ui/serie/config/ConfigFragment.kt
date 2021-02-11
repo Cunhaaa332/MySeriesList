@@ -1,5 +1,6 @@
 package com.cunha.myserieslist.ui.serie.config
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,8 +40,10 @@ class ConfigFragment : Fragment() {
                     textViewLegivel.text = "Sim"
                 else
                     textViewLegivel.text = "Não"
-                if(file.canWrite())
+                if(file.canWrite()) {
                     textViewEditavel.text = "Sim"
+                    escreverEmArquivo(file.name, "Mensagem teste.")
+                }
                 else
                     textViewEditavel.text = "Não"
             }
@@ -57,6 +60,12 @@ class ConfigFragment : Fragment() {
             val file = File(requireActivity().filesDir, nomeArquivo)
             file.createNewFile()
         }
+
+    }
+    private fun escreverEmArquivo(nome: String, msg: String){
+        val fileOutputStream = requireActivity().openFileOutput(nome, Context.MODE_APPEND)
+
+        fileOutputStream.write(msg.toByteArray())
     }
 
 }
