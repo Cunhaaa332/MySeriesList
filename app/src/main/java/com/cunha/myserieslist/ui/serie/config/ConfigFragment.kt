@@ -48,7 +48,6 @@ class ConfigFragment : Fragment() {
                     textViewLegivel.text = "Não"
                 if(file.canWrite()) {
                     textViewEditavel.text = "Sim"
-                    //escreverEmArquivo(file.name, "Mensagem teste.")
                 }
                 else
                     textViewEditavel.text = "Não"
@@ -67,11 +66,6 @@ class ConfigFragment : Fragment() {
             file.createNewFile()
         }
 
-    }
-    private fun escreverEmArquivo(nome: String, msg: String){
-        val fileOutputStream = requireActivity().openFileOutput(nome, Context.MODE_APPEND)
-
-        fileOutputStream.write(msg.toByteArray())
     }
 
     private fun lerArquivo (nome: String){

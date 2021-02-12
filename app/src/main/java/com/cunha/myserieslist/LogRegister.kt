@@ -14,6 +14,8 @@ class LogRegister(
         fileOS.close()
     }
 
+    //fun lerLog () = context.openFileInput(nomeArq).bufferedReader().readText()
+
     companion object {
         private var instance: LogRegister? = null
         fun getInstance(context: Context): LogRegister{
