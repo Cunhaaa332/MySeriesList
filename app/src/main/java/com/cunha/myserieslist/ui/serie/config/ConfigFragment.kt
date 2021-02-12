@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.cunha.myserieslist.LogRegister
 import com.cunha.myserieslist.R
 import kotlinx.android.synthetic.main.config_fragment.*
 import java.io.File
@@ -19,7 +20,11 @@ class ConfigFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.config_fragment, container, false)
+        val view = inflater.inflate(R.layout.config_fragment, container, false)
+
+        LogRegister.getInstance(requireContext()).escreveLog("Config Fragment acaba de ser acessado!")
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -36,13 +41,14 @@ class ConfigFragment : Fragment() {
             val file = File(requireActivity().filesDir, nomeArquivo)
             if(file.exists()) {
                 textViewExiste.text = "Sim"
-                if(file.canRead())
+                if(file.canRead()) {
                     textViewLegivel.text = "Sim"
-                else
+                    lerArquivo(file.name)
+                }else
                     textViewLegivel.text = "Não"
                 if(file.canWrite()) {
                     textViewEditavel.text = "Sim"
-                    escreverEmArquivo(file.name, "Mensagem teste.")
+                    //escreverEmArquivo(file.name, "Mensagem teste.")
                 }
                 else
                     textViewEditavel.text = "Não"
@@ -66,6 +72,12 @@ class ConfigFragment : Fragment() {
         val fileOutputStream = requireActivity().openFileOutput(nome, Context.MODE_APPEND)
 
         fileOutputStream.write(msg.toByteArray())
+    }
+
+    private fun lerArquivo (nome: String){
+        val fileIS = requireActivity().openFileInput(nome)
+        val texto = fileIS.bufferedReader().readText()
+        txtConteudoArquivo.text = texto
     }
 
 }

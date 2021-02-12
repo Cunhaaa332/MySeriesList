@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.cunha.myserieslist.LogRegister
 import com.cunha.myserieslist.R
 import kotlinx.android.synthetic.main.form_serie_fragment.*
 
@@ -20,6 +21,8 @@ class FormSerieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.form_serie_fragment, container, false)
+
+        LogRegister.getInstance(requireContext()).escreveLog("FormSerie Fragment acaba de ser acessado!")
 
         viewModel = ViewModelProvider(this).get(FormSerieViewModel::class.java)
 
