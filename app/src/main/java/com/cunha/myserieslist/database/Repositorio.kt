@@ -1,15 +1,13 @@
-package com.cunha.myserieslist.data
+package com.cunha.myserieslist.database
 
 import com.cunha.myserieslist.model.Serie
-import kotlinx.coroutines.delay
-import kotlin.random.Random
 
 class Repositorio {
 
     private val series = mutableListOf(
-        Serie("Breaking Bad", "20/01/2008", "Um professor de quimica que vende meta.", "10"),
-        Serie("Vinkings", "03/03/2013", "Uns Vinkings que caem no soco.", "8"),
-        Serie("Cobra Kai", "02/05/2018", "Uns jovens e uns velho lutando Karate.", "9")
+        Serie("","Breaking Bad", "20/01/2008", "Um professor de quimica que vende meta.", "10", "aaaaaaaaaaaa"),
+        Serie("","Vinkings", "03/03/2013", "Uns Vinkings que caem no soco.", "8","aaaaaaaaaaaa"),
+        Serie("","Cobra Kai", "02/05/2018", "Uns jovens e uns velho lutando Karate.", "9","aaaaaaaaa")
     )
 
     suspend fun all(): List<Serie>{

@@ -48,8 +48,9 @@ class FormSerieFragment : Fragment() {
             val data = editTextDataSerie.text.toString()
             val sinopse = editTextSinopseSerie.text.toString()
             val nota = editTextNotaSerie.text.toString()
+            val foto = editTextFotoSerie.text.toString()
 
-            viewModel.saveSerie(nome,data,sinopse,nota)
+            viewModel.saveSerie(nome,data,sinopse,nota, foto)
 
 
         }
