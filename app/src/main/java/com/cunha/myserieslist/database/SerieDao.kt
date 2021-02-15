@@ -7,5 +7,5 @@ import com.cunha.myserieslist.model.Serie
 @Dao
 interface SerieDao {
     @Insert
-    fun insert(serie: Serie)
+    suspend fun insert(serie: Serie)
 }
