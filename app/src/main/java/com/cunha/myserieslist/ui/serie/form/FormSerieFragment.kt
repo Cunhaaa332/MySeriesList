@@ -57,7 +57,7 @@ class FormSerieFragment : Fragment() {
 
             viewModel.saveSerie(nome,data,sinopse,nota, foto)
 
-
+            findNavController().popBackStack()
         }
     }
 

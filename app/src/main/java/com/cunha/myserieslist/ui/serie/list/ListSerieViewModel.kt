@@ -5,16 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cunha.myserieslist.database.Repositorio
+import com.cunha.myserieslist.database.SerieDao
 import com.cunha.myserieslist.model.Serie
 import kotlinx.coroutines.launch
 
-class ListSerieViewModel : ViewModel() {
+class ListSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
     private val _series = MutableLiveData<List<Serie>>()
     val series: LiveData<List<Serie>> = _series
 
     fun attListSeries() {
         viewModelScope.launch {
-            _series.value = Repositorio.getInstance().all()
+            _series.value = serieDao.all()
         }
     }
 }

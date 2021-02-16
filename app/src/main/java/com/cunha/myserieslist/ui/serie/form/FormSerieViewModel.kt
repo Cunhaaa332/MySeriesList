@@ -13,6 +13,8 @@ import kotlin.Exception
 
 class FormSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
 
+    //private var serie: Serie? = null
+
     private val _status = MutableLiveData<Boolean>()
     val status: LiveData<Boolean> = _status
     private val _message = MutableLiveData<String>()

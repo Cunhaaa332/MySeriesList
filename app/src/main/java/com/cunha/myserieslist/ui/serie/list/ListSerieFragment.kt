@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.LogRegister
 import com.cunha.myserieslist.R
+import com.cunha.myserieslist.database.AppDatabase
 import kotlinx.android.synthetic.main.list_serie_fragment.*
 
 class ListSerieFragment : Fragment() {
@@ -25,7 +26,11 @@ class ListSerieFragment : Fragment() {
 
         LogRegister.getInstance(requireContext()).escreveLog("ListSerie Fragment acaba de ser acessado!")
 
-        viewModel = ViewModelProvider(this).get(ListSerieViewModel::class.java)
+
+        val serieDao = AppDatabase.getInstance(requireContext().applicationContext).serieDao()
+        val listSerieViewModelFactory = ListSerieViewModelFactory(serieDao)
+
+        viewModel = ViewModelProvider(this, listSerieViewModelFactory).get(ListSerieViewModel::class.java)
         viewModel.series.observe(viewLifecycleOwner){
             listViewSerie.adapter = ArrayAdapter(
                 requireContext(),
