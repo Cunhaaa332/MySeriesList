@@ -4,16 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cunha.myserieslist.model.Episodio
 import com.cunha.myserieslist.model.Serie
 
 @Database(
     entities = [
-        Serie::class
+        Serie::class,
+        Episodio::class
     ],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun serieDao(): SerieDao
+    abstract fun episodioDao(): EpisodioDao
 
     companion object {
         private var instance: AppDatabase? = null

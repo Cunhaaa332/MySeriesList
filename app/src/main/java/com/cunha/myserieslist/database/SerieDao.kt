@@ -2,6 +2,7 @@ package com.cunha.myserieslist.database
 
 import androidx.room.*
 import com.cunha.myserieslist.model.Serie
+import com.cunha.myserieslist.model.SerieAndEpisodio
 
 @Dao
 interface SerieDao {
@@ -17,6 +18,7 @@ interface SerieDao {
     @Query("SELECT * FROM Serie")
     suspend fun all(): List<Serie>
 
+    @Transaction
     @Query("SELECT * FROM Serie WHERE id = :key")
-    suspend fun read(key: Long): Serie
+    suspend fun read(key: Long): SerieAndEpisodio
 }
