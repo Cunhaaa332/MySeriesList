@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cunha.myserieslist.database.Repositorio
 import com.cunha.myserieslist.database.SerieDao
+import com.cunha.myserieslist.database.SerieUtil
 import com.cunha.myserieslist.model.Serie
 import kotlinx.coroutines.launch
 import kotlin.Exception
@@ -28,11 +28,16 @@ class FormSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
     fun saveSerie(nome: String, data: String, sinopse: String, nota: String, foto: String) {
         _status.value = false
         _message.value = "Aguarde a persistência..."
-        viewModelScope.launch {
-            val serie = Serie(nome, data, sinopse, nota, foto)
 
+        viewModelScope.launch {
             try  {
-                serieDao.insert(serie)
+                val serie = Serie(nome, data, sinopse, nota, foto)
+                if(SerieUtil.serieSelecionada != null) {
+                    serie.id = SerieUtil.serieSelecionada!!.id
+                    serieDao.update(serie)
+                } else
+                    serieDao.insert(serie)
+
                 _status.value = true
                 _message.value = "Persistência realizada com êxito!"
             }catch (e: Exception){

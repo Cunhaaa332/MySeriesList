@@ -16,4 +16,7 @@ interface SerieDao {
 
     @Query("SELECT * FROM Serie")
     suspend fun all(): List<Serie>
+
+    @Query("SELECT * FROM Serie WHERE id = :key")
+    suspend fun read(key: Long): Serie
 }

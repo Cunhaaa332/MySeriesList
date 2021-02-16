@@ -12,7 +12,7 @@ class Serie (
     val nota: String? = null,
     val foto: String? = null,
     @PrimaryKey(autoGenerate = true)
-    val id: Long? = null,
+    var id: Long? = null,
 ){
     override fun toString(): String =
             "Nome: $nome \n" +

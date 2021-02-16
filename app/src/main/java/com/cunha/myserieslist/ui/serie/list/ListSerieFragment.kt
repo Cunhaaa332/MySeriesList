@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.LogRegister
 import com.cunha.myserieslist.R
 import com.cunha.myserieslist.database.AppDatabase
+import com.cunha.myserieslist.database.SerieUtil
+import com.cunha.myserieslist.model.Serie
 import kotlinx.android.synthetic.main.list_serie_fragment.*
 
 class ListSerieFragment : Fragment() {
@@ -37,6 +39,11 @@ class ListSerieFragment : Fragment() {
                 android.R.layout.simple_list_item_1,
                 it
             )
+            listViewSerie.setOnItemClickListener { parent, view, position, id ->
+                val serie = it.get(position)
+                SerieUtil.serieSelecionada = serie
+                findNavController().navigate(R.id.formSerieFragment)
+            }
         }
         viewModel.attListSeries()
 
@@ -46,6 +53,7 @@ class ListSerieFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         fabFormSerie.setOnClickListener{
+            SerieUtil.serieSelecionada = null
             findNavController().navigate(R.id.formSerieFragment)
         }
         fabConfig.setOnClickListener{

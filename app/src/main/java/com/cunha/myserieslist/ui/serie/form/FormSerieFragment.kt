@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.LogRegister
 import com.cunha.myserieslist.R
 import com.cunha.myserieslist.database.AppDatabase
+import com.cunha.myserieslist.database.SerieUtil
+import com.cunha.myserieslist.model.Serie
 import kotlinx.android.synthetic.main.form_serie_fragment.*
 
 class FormSerieFragment : Fragment() {
@@ -48,6 +50,9 @@ class FormSerieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (SerieUtil.serieSelecionada != null)
+            preencherFormulario(SerieUtil.serieSelecionada!!)
+
         fabSaveSerie.setOnClickListener{
             val nome = editTextNomeSerie.text.toString()
             val data = editTextDataSerie.text.toString()
@@ -59,6 +64,14 @@ class FormSerieFragment : Fragment() {
 
             findNavController().popBackStack()
         }
+    }
+
+    private fun preencherFormulario(serie: Serie){
+        editTextNomeSerie.setText(serie.nome)
+        editTextDataSerie.setText(serie.dataLancamento)
+        editTextSinopseSerie.setText(serie.sinopse)
+        editTextNotaSerie.setText(serie.nota)
+        editTextFotoSerie.setText(serie.foto)
     }
 
 }
