@@ -10,7 +10,7 @@ class SerieAndEpisodio (
                 parentColumn = "id",
                 entityColumn = "serieId"
         )
-        val episodio: Episodio
+        val episodios: List<Episodio>
 ){
-        override fun toString(): String = "Serie: " + "${serie.nome}" + "Episodios: " + "${episodio.nome}"
+        override fun toString(): String = "Serie: " + "${serie.nome}" + "Episodios: " + "${episodios}"
 }
