@@ -23,4 +23,7 @@ interface EpisodioDao {
 
     @Query("SELECT * FROM Episodio WHERE serieId = :key")
     suspend fun readEpisdioSerie(key: Long): List<Episodio>
+
+    @Query("DELETE FROM Episodio WHERE serieId = :key")
+    suspend fun deleteEpisodesOfSerie(key: Long?)
 }

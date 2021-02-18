@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
 import com.cunha.myserieslist.database.AppDatabase
 import com.cunha.myserieslist.database.SerieUtil
@@ -66,6 +67,15 @@ class DetailsSerieFragment : Fragment() {
         viewModel.viewModelScope.launch {
             preencherDetails(SerieUtil.serieSelecionada!!)
         }
+        fabEditSerie.setOnClickListener {
+            findNavController().navigate(R.id.formSerieFragment)
+        }
+        fabDeleteSerie.setOnClickListener{
+            viewModel.viewModelScope.launch {
+                deletarSerie(SerieUtil.serieSelecionada!!)
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private suspend fun preencherDetails(serie: Serie){
@@ -73,6 +83,13 @@ class DetailsSerieFragment : Fragment() {
         textViewDataSerie.setText(serie.dataLancamento)
         textViewSinopseSerie.setText(serie.sinopse)
         textViewNotaSerie.setText(serie.nota)
+    }
+
+    private suspend fun deletarSerie(serie: Serie){
+        val sereiDao = AppDatabase.getInstance(requireContext().applicationContext).serieDao()
+        val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
+        sereiDao.delete(serie)
+        episodioDao.deleteEpisodesOfSerie(serie.id)
     }
 
 }
