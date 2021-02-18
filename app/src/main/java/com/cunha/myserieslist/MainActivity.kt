@@ -18,12 +18,11 @@ class MainActivity : AppCompatActivity() {
         val appDatabase = AppDatabase.getInstance(this)
         val serieDao = appDatabase.serieDao()
         val episodioDao = appDatabase.episodioDao()
-        GlobalScope.launch {
+       // GlobalScope.launch {
             //serieDao.insert(Serie("Breaking Bad", "01/01/2001", "AAAA", "10", "aaaaa"))
-            //episodioDao.insert(Episodio("Pilot",1,"O primeiro ep.","10",5))
-            //episodioDao.insert(Episodio("Cat´s in the Bag",2,"O segundo ep.","10",5))
-            Log.i("Serie Lida: ", serieDao.read(5).toString())
-        }
+            //episodioDao.insert(Episodio("...And the Bag´s in the River",3,"O terceiro ep.","10",5))
+           // Log.i("Serie Lida: ", serieDao.read(5).toString())
+       // }
 
 
     }

@@ -20,4 +20,14 @@
         android:name="com.cunha.myserieslist.ui.serie.config.ConfigFragment"
         android:label="config_fragment"
         tools:layout="@layout/config_fragment" />
+    <fragment
+        android:id="@+id/formEpisodioFragment"
+        android:name="com.cunha.myserieslist.ui.episodio.form.FormEpisodioFragment"
+        android:label="form_episodio_fragment"
+        tools:layout="@layout/form_episodio_fragment" />
+    <fragment
+        android:id="@+id/detailsSerieFragment"
+        android:name="com.cunha.myserieslist.ui.serie.details.DetailsSerieFragment"
+        android:label="details_serie_fragment"
+        tools:layout="@layout/details_serie_fragment" />
 </navigation>

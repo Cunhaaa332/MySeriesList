@@ -42,7 +42,7 @@ class ListSerieFragment : Fragment() {
             listViewSerie.setOnItemClickListener { parent, view, position, id ->
                 val serie = it.get(position)
                 SerieUtil.serieSelecionada = serie
-                findNavController().navigate(R.id.formSerieFragment)
+                findNavController().navigate(R.id.detailsSerieFragment)
             }
         }
         viewModel.attListSeries()

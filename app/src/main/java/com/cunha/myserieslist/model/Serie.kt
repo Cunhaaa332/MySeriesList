@@ -15,8 +15,9 @@ class Serie (
     var id: Long? = null,
 ){
     override fun toString(): String =
-            "Nome: $nome \n" +
-            "Lançamento: $dataLancamento \n" +
-            "Nota: $nota"
+        "Id: $id \n" +
+        "Nome: $nome \n" +
+        "Lançamento: $dataLancamento \n" +
+        "Nota: $nota"
 }
 

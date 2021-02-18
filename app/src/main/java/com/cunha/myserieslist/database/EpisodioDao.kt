@@ -20,4 +20,7 @@ interface EpisodioDao {
 
     @Query("SELECT * FROM Episodio WHERE id = :key")
     suspend fun read(key: Long): Episodio
+
+    @Query("SELECT * FROM Episodio WHERE serieId = :key")
+    suspend fun readEpisdioSerie(key: Long): List<Episodio>
 }

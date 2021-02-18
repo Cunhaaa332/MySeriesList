@@ -14,6 +14,6 @@ class Episodio(
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
 ){
-    override fun toString(): String = "Nome: " + "{$nome}"
+    override fun toString(): String = "Nome: $nome"
 
 }
