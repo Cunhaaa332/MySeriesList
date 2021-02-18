@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
 import com.cunha.myserieslist.database.AppDatabase
+import com.cunha.myserieslist.database.EpisodioUtil
 import com.cunha.myserieslist.database.SerieUtil
 import com.cunha.myserieslist.model.Episodio
 import com.cunha.myserieslist.model.Serie
@@ -35,7 +36,6 @@ class DetailsSerieFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.details_serie_fragment, container, false)
 
-
         val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
         val key: Long? = SerieUtil.serieSelecionada?.id
         val detailsSerieFragmentViewModelFactory =
@@ -50,6 +50,11 @@ class DetailsSerieFragment : Fragment() {
                 android.R.layout.simple_list_item_1,
                 it
             )
+            listViewEpisodios.setOnItemClickListener { parent, view, position, id ->
+                val episodio = it.get(position)
+                EpisodioUtil.episodioSelecionado = episodio
+                findNavController().navigate(R.id.detailsEpisodioFragment)
+            }
         }
         viewModel.allepisodios()
         return view
@@ -75,6 +80,10 @@ class DetailsSerieFragment : Fragment() {
                 deletarSerie(SerieUtil.serieSelecionada!!)
                 findNavController().popBackStack()
             }
+        }
+        fabAddEpisodio.setOnClickListener{
+            EpisodioUtil.episodioSelecionado = null
+            findNavController().navigate(R.id.formEpisodioFragment)
         }
     }
 

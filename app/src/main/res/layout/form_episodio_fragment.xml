@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/editTextSinopseEpisodio"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.episodio.form.FormEpisodioFragment" >
+    tools:context=".ui.episodio.form.FormEpisodioFragment">
 
     <EditText
         android:id="@+id/editTextNomeEpisodio"
@@ -46,11 +45,12 @@
         android:hint="Nota..."
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumeroEpisodio" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextSinopseEpisodio" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/fabSaveEpisodio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -59,4 +59,18 @@
         android:src="@android:drawable/ic_menu_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextSinopseEpisodio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:ems="10"
+        android:hint="Sinopse..."
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumeroEpisodio" />
 </androidx.constraintlayout.widget.ConstraintLayout>

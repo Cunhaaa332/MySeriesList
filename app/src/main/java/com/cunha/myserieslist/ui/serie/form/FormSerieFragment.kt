@@ -41,7 +41,7 @@ class FormSerieFragment : Fragment() {
             }
             it.status.observe(viewLifecycleOwner){ status ->
                 if(status)
-                    findNavController().popBackStack()
+                    findNavController().popBackStack(R.id.listSerieFragment, false)
             }
         }
         return view
@@ -61,8 +61,6 @@ class FormSerieFragment : Fragment() {
             val foto = editTextFotoSerie.text.toString()
 
             viewModel.saveSerie(nome,data,sinopse,nota, foto)
-
-            findNavController().popBackStack()
         }
     }
 

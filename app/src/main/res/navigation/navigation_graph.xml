@@ -30,4 +30,9 @@
         android:name="com.cunha.myserieslist.ui.serie.details.DetailsSerieFragment"
         android:label="details_serie_fragment"
         tools:layout="@layout/details_serie_fragment" />
+    <fragment
+        android:id="@+id/detailsEpisodioFragment"
+        android:name="com.cunha.myserieslist.ui.episodio.details.DetailsEpisodioFragment"
+        android:label="details_episodio_fragment"
+        tools:layout="@layout/details_episodio_fragment" />
 </navigation>

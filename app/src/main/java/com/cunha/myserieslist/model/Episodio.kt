@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 class Episodio(
     val nome: String? = null,
-    val numeroEp: Int? = null,
+    val numeroEp: String? = null,
     val sinopse: String? = null,
     val nota: String? = null,
     val serieId : Long? = null,

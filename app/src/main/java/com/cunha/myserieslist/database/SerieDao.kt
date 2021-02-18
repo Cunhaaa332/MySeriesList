@@ -20,5 +20,5 @@ interface SerieDao {
 
     @Transaction
     @Query("SELECT * FROM Serie WHERE id = :key")
-    suspend fun read(key: Long): List<SerieAndEpisodio>
+    suspend fun read(key: Long): Serie
 }

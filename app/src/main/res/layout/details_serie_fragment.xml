@@ -99,11 +99,11 @@
         android:id="@+id/listViewEpisodios"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="230dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </ListView>
 
@@ -142,4 +142,17 @@
         app:backgroundTint="#2196F3"
         app:layout_constraintBottom_toTopOf="@+id/fabAddEpisodio"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="181dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="172dp"
+        android:text="Episódios:"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSinopseSerie" />
 </androidx.constraintlayout.widget.ConstraintLayout>
