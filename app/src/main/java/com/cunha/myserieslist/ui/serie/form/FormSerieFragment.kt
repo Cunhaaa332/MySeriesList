@@ -25,7 +25,7 @@ class FormSerieFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.form_serie_fragment, container, false)
 
-        LogRegister.getInstance(requireContext()).escreveLog("FormSerie Fragment acaba de ser acessado!")
+        LogRegister.getInstance(requireContext()).escreveLog("FormSerie Fragment acaba de ser acessado.!")
 
         val appDataBase = AppDatabase.getInstance(requireContext().applicationContext)
         val serieDao = appDataBase.serieDao()
