@@ -43,6 +43,10 @@ class FormSerieFragment : Fragment() {
                 if(status)
                     findNavController().popBackStack(R.id.listSerieFragment, false)
             }
+            it.imageSerie.observe(viewLifecycleOwner){ image->
+                if (image != null)
+                    imageViewFormSerieFoto.setImageBitmap(image)
+            }
         }
         return view
     }
@@ -52,6 +56,8 @@ class FormSerieFragment : Fragment() {
 
         if (SerieUtil.serieSelecionada != null)
             preencherFormulario(SerieUtil.serieSelecionada!!)
+
+        //imageViewFormSerieFoto.setImageBitmap()
 
         fabSaveSerie.setOnClickListener{
             val nome = editTextNomeSerie.text.toString()

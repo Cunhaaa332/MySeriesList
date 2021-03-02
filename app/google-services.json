@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "638808573595",
+    "project_id": "myserielist-f0c85",
+    "storage_bucket": "myserielist-f0c85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638808573595:android:340bdc47ad8d4ca8c4e83e",
+        "android_client_info": {
+          "package_name": "com.cunha.myserieslist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638808573595-oase8vm5om2r5kg9t7hllc1gtclh6bpo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWbnSEYOI9iO72PhAVuzDcafS70bx77sA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638808573595-oase8vm5om2r5kg9t7hllc1gtclh6bpo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
