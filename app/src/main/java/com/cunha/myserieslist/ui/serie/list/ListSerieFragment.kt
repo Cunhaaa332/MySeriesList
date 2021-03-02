@@ -8,8 +8,10 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cunha.myserieslist.LogRegister
 import com.cunha.myserieslist.R
+import com.cunha.myserieslist.adapter.RecyclerListSerie
 import com.cunha.myserieslist.database.AppDatabase
 import com.cunha.myserieslist.database.SerieUtil
 import com.cunha.myserieslist.model.Serie
@@ -34,16 +36,8 @@ class ListSerieFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, listSerieViewModelFactory).get(ListSerieViewModel::class.java)
         viewModel.series.observe(viewLifecycleOwner){
-            listViewSerie.adapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_list_item_1,
-                it
-            )
-            listViewSerie.setOnItemClickListener { parent, view, position, id ->
-                val serie = it.get(position)
-                SerieUtil.serieSelecionada = serie
-                findNavController().navigate(R.id.detailsSerieFragment)
-            }
+            recyclerViewListSerie.adapter = RecyclerListSerie(it)
+            recyclerViewListSerie.layoutManager = LinearLayoutManager(requireContext())
         }
         viewModel.attListSeries()
 
