@@ -23,9 +23,9 @@ class FormEpisodioFragment : Fragment() {
         val view = inflater.inflate(R.layout.form_episodio_fragment, container, false)
 
         val appDataBase = AppDatabase.getInstance(requireContext().applicationContext)
-        val episodioDao = appDataBase.episodioDao()
-        val formEpisodioViewModelFactory = FormEpisodioViewModelFactory(episodioDao)
-        viewModel = ViewModelProvider(this, formEpisodioViewModelFactory).get(FormEpisodioViewModel::class.java)
+        //val episodioDao = appDataBase.episodioDao()
+        //val formEpisodioViewModelFactory = FormEpisodioViewModelFactory(episodioDao)
+        //viewModel = ViewModelProvider(this, formEpisodioViewModelFactory).get(FormEpisodioViewModel::class.java)
         return view
     }
 
@@ -45,7 +45,7 @@ class FormEpisodioFragment : Fragment() {
             val sinopse = editTextSinopseEpisodio.text.toString()
             val nota = editTextNotaEpisodio.text.toString()
 
-            viewModel.saveEpisodio(nome, numero, sinopse, nota)
+           // viewModel.saveEpisodio(nome, numero, sinopse, nota)
             findNavController().popBackStack()
         }
     }

@@ -29,26 +29,23 @@ class FormSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
         loadImageSerie()
     }
 
-    fun saveSerie(nome: String, data: String, sinopse: String, nota: String, foto: String) {
+     fun saveSerie(nome: String, data: String, sinopse: String, nota: String, foto: String) {
         _status.value = false
         _message.value = "Aguarde a persistência..."
 
-        viewModelScope.launch {
-            try  {
-                val serie = Serie(nome, data, sinopse, nota, foto)
-                if(SerieUtil.serieSelecionada != null) {
-                    serie.id = SerieUtil.serieSelecionada!!.id
-                    serieDao.update(serie)
-                } else
-                    serieDao.insert(serie)
+        val serie = Serie(nome, data, sinopse, nota, foto)
 
-                _status.value = true
-                _message.value = "Persistência realizada com êxito!"
-            }catch (e: Exception){
-                _message.value = "Falha na persistência!"
-                Log.e("SQLite", "${e.message}")
-            }
+        serieDao.insertOrUpdate(serie).addOnSuccessListener {
+            _status.value = true
+            _message.value = "Persistência realizada com êxito!"
+        }.addOnFailureListener{
+            _message.value = "Falha na persistência!"
+            Log.e("SerieDaoFirebase", "${it.message}")
         }
+                //if(SerieUtil.serieSelecionada != null) {
+                 //   serie.id = SerieUtil.serieSelecionada!!.id
+                  //  serieDao.update(serie)
+               // } else
     }
 
     fun loadImageSerie(){

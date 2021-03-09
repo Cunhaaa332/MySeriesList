@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
 import com.cunha.myserieslist.database.AppDatabase
 import com.cunha.myserieslist.database.EpisodioUtil
+import com.cunha.myserieslist.database.SerieDaoFirestore
 import com.cunha.myserieslist.database.SerieUtil
 import com.cunha.myserieslist.model.Episodio
 import com.cunha.myserieslist.model.Serie
@@ -36,13 +37,12 @@ class DetailsSerieFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.details_serie_fragment, container, false)
 
-        val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
+        /*val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
         val key: Long? = SerieUtil.serieSelecionada?.id
-        val detailsSerieFragmentViewModelFactory =
-            DetailsSerieFragmentViewModelFactory(episodioDao, key)
+        val detailsSerieFragmentViewModelFactory = DetailsSerieFragmentViewModelFactory(episodioDao, key)
         viewModel = ViewModelProvider(
             this,
-            detailsSerieFragmentViewModelFactory
+           detailsSerieFragmentViewModelFactory
         ).get(DetailsSerieViewModel::class.java)
         viewModel.episodios.observe(viewLifecycleOwner) {
             listViewEpisodios.adapter = ArrayAdapter(
@@ -56,7 +56,7 @@ class DetailsSerieFragment : Fragment() {
                 findNavController().navigate(R.id.detailsEpisodioFragment)
             }
         }
-        viewModel.allepisodios()
+        viewModel.allepisodios()*/
         return view
     }
 
@@ -68,18 +68,15 @@ class DetailsSerieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (SerieUtil.serieSelecionada != null)
-
-        viewModel.viewModelScope.launch {
             preencherDetails(SerieUtil.serieSelecionada!!)
-        }
+
         fabEditSerie.setOnClickListener {
             findNavController().navigate(R.id.formSerieFragment)
         }
         fabDeleteSerie.setOnClickListener{
-            viewModel.viewModelScope.launch {
                 deletarSerie(SerieUtil.serieSelecionada!!)
                 findNavController().popBackStack()
-            }
+
         }
         fabAddEpisodio.setOnClickListener{
             EpisodioUtil.episodioSelecionado = null
@@ -87,18 +84,19 @@ class DetailsSerieFragment : Fragment() {
         }
     }
 
-    private suspend fun preencherDetails(serie: Serie){
+    private fun preencherDetails(serie: Serie){
         textViewNomeSerie.setText(serie.nome)
         textViewDataSerie.setText(serie.dataLancamento)
         textViewSinopseSerie.setText(serie.sinopse)
         textViewNotaSerie.setText(serie.nota)
     }
 
-    private suspend fun deletarSerie(serie: Serie){
-        val sereiDao = AppDatabase.getInstance(requireContext().applicationContext).serieDao()
-        val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
-        sereiDao.delete(serie)
-        episodioDao.deleteEpisodesOfSerie(serie.id)
+    private fun deletarSerie(serie: Serie){
+       // val sereiDao = AppDatabase.getInstance(requireContext().applicationContext).serieDao()
+       // val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
+      //  sereiDao.delete(serie)
+      //  episodioDao.deleteEpisodesOfSerie(serie.id)
+        SerieDaoFirestore().delete(serie)
     }
 
 }

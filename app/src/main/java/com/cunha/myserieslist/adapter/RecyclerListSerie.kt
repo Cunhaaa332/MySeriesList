@@ -39,11 +39,11 @@ class RecyclerListSerie(
         holder.textSerieNota.text = serie.nota
 
         val fileReference: StorageReference
-        if(serie.id!!.toInt() % 2 == 0){
-            fileReference = storageReference.child("Televisão_par.png")
-        }else{
+       // if(serie.id!!.toInt() % 2 == 0){
+       //     fileReference = storageReference.child("Televisão_par.png")
+       // }else{
             fileReference = storageReference.child("Televisão_Impar.png")
-        }
+       // }
         fileReference.getBytes(1024*1024).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             holder.imageSerie.setImageBitmap(bitmap)

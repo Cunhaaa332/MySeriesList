@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,9 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cunha.myserieslist.LogRegister
 import com.cunha.myserieslist.R
 import com.cunha.myserieslist.adapter.RecyclerListSerie
-import com.cunha.myserieslist.database.AppDatabase
+import com.cunha.myserieslist.database.SerieDaoFirestore
 import com.cunha.myserieslist.database.SerieUtil
-import com.cunha.myserieslist.model.Serie
 import kotlinx.android.synthetic.main.list_serie_fragment.*
 
 class ListSerieFragment : Fragment() {
@@ -30,9 +28,7 @@ class ListSerieFragment : Fragment() {
 
         LogRegister.getInstance(requireContext()).escreveLog("ListSerie Fragment acaba de ser acessado!")
 
-
-        val serieDao = AppDatabase.getInstance(requireContext().applicationContext).serieDao()
-        val listSerieViewModelFactory = ListSerieViewModelFactory(serieDao)
+        val listSerieViewModelFactory = ListSerieViewModelFactory(SerieDaoFirestore())
 
         viewModel = ViewModelProvider(this, listSerieViewModelFactory).get(ListSerieViewModel::class.java)
         viewModel.series.observe(viewLifecycleOwner){

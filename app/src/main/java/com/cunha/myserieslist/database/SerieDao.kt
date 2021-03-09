@@ -3,22 +3,17 @@ package com.cunha.myserieslist.database
 import androidx.room.*
 import com.cunha.myserieslist.model.Serie
 import com.cunha.myserieslist.model.SerieAndEpisodio
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.QuerySnapshot
 
-@Dao
+
 interface SerieDao {
-    @Insert
-    suspend fun insert(serie: Serie)
 
-    @Update
-    suspend fun update(serie: Serie)
+     fun insertOrUpdate(serie: Serie) : Task<Void>
 
-    @Delete
-    suspend fun delete(serie: Serie)
+     fun delete(serie: Serie) : Task<Void>
 
-    @Query("SELECT * FROM Serie")
-    suspend fun all(): List<Serie>
+     fun all(): Task<QuerySnapshot>
 
-    @Transaction
-    @Query("SELECT * FROM Serie WHERE id = :key")
-    suspend fun read(key: Long): Serie
+     fun read(key: Long): Serie
 }

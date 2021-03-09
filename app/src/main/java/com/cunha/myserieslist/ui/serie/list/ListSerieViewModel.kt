@@ -13,8 +13,14 @@ class ListSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
     val series: LiveData<List<Serie>> = _series
 
     fun attListSeries() {
-        viewModelScope.launch {
-            _series.value = serieDao.all()
+        serieDao.all().addOnSuccessListener {
+            val seriesFB = it.toObjects(Serie::class.java)
+            _series.value = seriesFB
+        }.addOnFailureListener {
+
         }
+        /*viewModelScope.launch {
+            _series.value = serieDao.all()
+        }*/
     }
 }

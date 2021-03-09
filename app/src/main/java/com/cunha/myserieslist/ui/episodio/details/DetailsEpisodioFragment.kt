@@ -11,9 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
 import com.cunha.myserieslist.database.AppDatabase
 import com.cunha.myserieslist.database.EpisodioUtil
-import com.cunha.myserieslist.database.SerieUtil
+import com.cunha.myserieslist.database.SerieDaoFirestore
 import com.cunha.myserieslist.model.Episodio
-import com.cunha.myserieslist.model.Serie
 import kotlinx.android.synthetic.main.details_episodio_fragment.*
 import kotlinx.android.synthetic.main.details_serie_fragment.*
 import kotlinx.coroutines.launch
@@ -53,18 +52,18 @@ class DetailsEpisodioFragment : Fragment() {
     }
 
     private suspend fun preencherDetails(episodio: Episodio){
-        val serieDao = AppDatabase.getInstance(requireContext().applicationContext).serieDao()
+
         textViewNomeEpisodio.setText(episodio.nome)
         textViewNumeroEpisodio.setText(episodio.numeroEp)
         textViewSinopseEpisodio.setText(episodio.sinopse)
-        var serie = serieDao.read(episodio.serieId!!)
-        textViewSNEpisodio.setText(serie.nome)
+        //var serie = SerieDaoFirestore().read(episodio.serieId!!)
+        //textViewSNEpisodio.setText(serie.nome)
 
     }
 
     private suspend fun deletarEpisodio(episodio: Episodio){
-        val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
-        episodioDao.delete(episodio)
+        //val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
+        //episodioDao.delete(episodio)
     }
 
 }

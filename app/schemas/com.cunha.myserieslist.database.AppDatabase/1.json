@@ -2,113 +2,12 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b250d291ce859409652ed380248e8618",
-    "entities": [
-      {
-        "tableName": "Serie",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`nome` TEXT, `dataLancamento` TEXT, `sinopse` TEXT, `nota` TEXT, `foto` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT)",
-        "fields": [
-          {
-            "fieldPath": "nome",
-            "columnName": "nome",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "dataLancamento",
-            "columnName": "dataLancamento",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "sinopse",
-            "columnName": "sinopse",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "nota",
-            "columnName": "nota",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "foto",
-            "columnName": "foto",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": true
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
-        "tableName": "Episodio",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`nome` TEXT, `numeroEp` TEXT, `sinopse` TEXT, `nota` TEXT, `serieId` INTEGER, `id` INTEGER PRIMARY KEY AUTOINCREMENT)",
-        "fields": [
-          {
-            "fieldPath": "nome",
-            "columnName": "nome",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "numeroEp",
-            "columnName": "numeroEp",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "sinopse",
-            "columnName": "sinopse",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "nota",
-            "columnName": "nota",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "serieId",
-            "columnName": "serieId",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": true
-        },
-        "indices": [],
-        "foreignKeys": []
-      }
-    ],
+    "identityHash": "d41d8cd98f00b204e9800998ecf8427e",
+    "entities": [],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b250d291ce859409652ed380248e8618')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd41d8cd98f00b204e9800998ecf8427e')"
     ]
   }
 }
