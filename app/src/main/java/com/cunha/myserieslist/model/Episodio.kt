@@ -1,6 +1,6 @@
 package com.cunha.myserieslist.model
 
-
+import com.google.firebase.firestore.DocumentId
 
 
 class Episodio(
@@ -8,10 +8,10 @@ class Episodio(
     val numeroEp: String? = null,
     val sinopse: String? = null,
     val nota: String? = null,
-    val serieNome : String? = null,
-
-
-    var id: Long? = null
+    val serieId : String? = null,
+    
+    @DocumentId
+    var id: String? = null
 ){
     override fun toString(): String = "Nome: $nome"
 

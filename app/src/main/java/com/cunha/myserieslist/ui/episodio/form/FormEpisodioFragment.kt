@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
 import com.cunha.myserieslist.database.AppDatabase
+import com.cunha.myserieslist.database.EpisodioDaoFirestore
 import com.cunha.myserieslist.database.EpisodioUtil
 import com.cunha.myserieslist.database.SerieUtil
 import com.cunha.myserieslist.model.Episodio
@@ -22,10 +23,8 @@ class FormEpisodioFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.form_episodio_fragment, container, false)
 
-        val appDataBase = AppDatabase.getInstance(requireContext().applicationContext)
-        //val episodioDao = appDataBase.episodioDao()
-        //val formEpisodioViewModelFactory = FormEpisodioViewModelFactory(episodioDao)
-        //viewModel = ViewModelProvider(this, formEpisodioViewModelFactory).get(FormEpisodioViewModel::class.java)
+        val formEpisodioViewModelFactory = FormEpisodioViewModelFactory(EpisodioDaoFirestore())
+        viewModel = ViewModelProvider(this, formEpisodioViewModelFactory).get(FormEpisodioViewModel::class.java)
         return view
     }
 
@@ -45,7 +44,7 @@ class FormEpisodioFragment : Fragment() {
             val sinopse = editTextSinopseEpisodio.text.toString()
             val nota = editTextNotaEpisodio.text.toString()
 
-           // viewModel.saveEpisodio(nome, numero, sinopse, nota)
+            viewModel.saveEpisodio(nome, numero, sinopse, nota)
             findNavController().popBackStack()
         }
     }

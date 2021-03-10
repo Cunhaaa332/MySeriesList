@@ -1,27 +1,25 @@
 package com.cunha.myserieslist.database
 
 import com.cunha.myserieslist.model.Episodio
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 
 
 interface EpisodioDao {
 
-     fun insert(episodio: Episodio)
+     fun insert(episodio: Episodio): Task<DocumentReference>
 
 
-     fun update(episodio: Episodio)
+     fun update(episodio: Episodio): Task<Void>
 
 
-     fun delete(episodio: Episodio)
+     fun delete(episodio: Episodio): Task<Void>
 
 
-     fun all(): List<Episodio>
+     fun readEpisdioSerie(key: String): Task<QuerySnapshot>
 
 
-     fun read(key: Long): Episodio
-
-
-     fun readEpisdioSerie(key: Long): List<Episodio>
-
-
-     fun deleteEpisodesOfSerie(key: Long?)
+     fun deleteEpisodesOfSerie(key: String?)
 }

@@ -10,11 +10,11 @@ import com.cunha.myserieslist.model.Episodio
 import kotlinx.coroutines.launch
 
 class FormEpisodioViewModel(val episodioDao: EpisodioDao) : ViewModel() {
- /**   fun saveEpisodio(nome: String, numeroEp: String, sinopse: String, nota: String) {
+    fun saveEpisodio(nome: String, numeroEp: String, sinopse: String, nota: String) {
 
         viewModelScope.launch {
             try  {
-                val serieNome = SerieUtil.serieSelecionada?.id
+                val serieId = SerieUtil.serieSelecionada?.id
                 val episodio = Episodio(nome, numeroEp, sinopse, nota, serieId)
                 if(EpisodioUtil.episodioSelecionado != null) {
                     episodio.id = EpisodioUtil.episodioSelecionado!!.id
@@ -22,8 +22,8 @@ class FormEpisodioViewModel(val episodioDao: EpisodioDao) : ViewModel() {
                 } else
                     episodioDao.insert(episodio)
             }catch (e: Exception){
-                Log.e("SQLite", "${e.message}")
+                Log.e("FirBase", "${e.message}")
             }
         }
-    }**/
+    }
 }

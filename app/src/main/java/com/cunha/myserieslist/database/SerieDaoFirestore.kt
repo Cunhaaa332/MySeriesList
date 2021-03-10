@@ -4,6 +4,7 @@ import com.cunha.myserieslist.model.Serie
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 
 class SerieDaoFirestore : SerieDao {
@@ -22,8 +23,8 @@ class SerieDaoFirestore : SerieDao {
         return collection.get()
     }
 
-    override fun read(key: Long): Serie {
-        return Serie()
+    override fun read(key: String): Query {
+        return collection.whereEqualTo("id", key!!)
     }
 
     override fun edit(serie: Serie): Task<Void> {

@@ -9,10 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
-import com.cunha.myserieslist.database.AppDatabase
-import com.cunha.myserieslist.database.EpisodioUtil
-import com.cunha.myserieslist.database.SerieDaoFirestore
+import com.cunha.myserieslist.database.*
 import com.cunha.myserieslist.model.Episodio
+import com.cunha.myserieslist.model.Serie
 import kotlinx.android.synthetic.main.details_episodio_fragment.*
 import kotlinx.android.synthetic.main.details_serie_fragment.*
 import kotlinx.coroutines.launch
@@ -34,15 +33,13 @@ class DetailsEpisodioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (EpisodioUtil.episodioSelecionado != null)
 
-        viewModel.viewModelScope.launch {
             preencherDetails(EpisodioUtil.episodioSelecionado!!)
-        }
+
 
         fabDeleteEpisode.setOnClickListener {
-            viewModel.viewModelScope.launch {
                 deletarEpisodio(EpisodioUtil.episodioSelecionado!!)
                 findNavController().popBackStack()
-            }
+
         }
 
         fabEditEpisodio.setOnClickListener {
@@ -51,19 +48,17 @@ class DetailsEpisodioFragment : Fragment() {
 
     }
 
-    private suspend fun preencherDetails(episodio: Episodio){
+    private fun preencherDetails(episodio: Episodio){
 
         textViewNomeEpisodio.setText(episodio.nome)
         textViewNumeroEpisodio.setText(episodio.numeroEp)
         textViewSinopseEpisodio.setText(episodio.sinopse)
-        //var serie = SerieDaoFirestore().read(episodio.serieId!!)
-        //textViewSNEpisodio.setText(serie.nome)
+        textViewSNEpisodio.setText(SerieUtil.serieSelecionada!!.nome)
 
     }
 
-    private suspend fun deletarEpisodio(episodio: Episodio){
-        //val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
-        //episodioDao.delete(episodio)
+    private fun deletarEpisodio(episodio: Episodio){
+        EpisodioDaoFirestore().delete(episodio)
     }
 
 }

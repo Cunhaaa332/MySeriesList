@@ -10,10 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
-import com.cunha.myserieslist.database.AppDatabase
-import com.cunha.myserieslist.database.EpisodioUtil
-import com.cunha.myserieslist.database.SerieDaoFirestore
-import com.cunha.myserieslist.database.SerieUtil
+import com.cunha.myserieslist.database.*
 import com.cunha.myserieslist.model.Episodio
 import com.cunha.myserieslist.model.Serie
 import com.cunha.myserieslist.ui.serie.list.ListSerieViewModel
@@ -37,9 +34,9 @@ class DetailsSerieFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.details_serie_fragment, container, false)
 
-        /*val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
-        val key: Long? = SerieUtil.serieSelecionada?.id
-        val detailsSerieFragmentViewModelFactory = DetailsSerieFragmentViewModelFactory(episodioDao, key)
+        val episodioDao = EpisodioDaoFirestore()
+        val key: String? = SerieUtil.serieSelecionada?.id
+        val detailsSerieFragmentViewModelFactory = DetailsSerieFragmentViewModelFactory(EpisodioDaoFirestore(), key)
         viewModel = ViewModelProvider(
             this,
            detailsSerieFragmentViewModelFactory
@@ -56,7 +53,7 @@ class DetailsSerieFragment : Fragment() {
                 findNavController().navigate(R.id.detailsEpisodioFragment)
             }
         }
-        viewModel.allepisodios()*/
+        viewModel.allepisodios()
         return view
     }
 

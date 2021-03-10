@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.cunha.myserieslist.database.EpisodioDao
 import java.lang.IllegalArgumentException
 
-class DetailsSerieFragmentViewModelFactory(val episodioDao: EpisodioDao, val key: Long?) : ViewModelProvider.Factory {
+class DetailsSerieFragmentViewModelFactory(val episodioDao: EpisodioDao, val key: String?) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailsSerieViewModel::class.java)){
-            return DetailsSerieViewModel(/*episodioDao, key*/) as T
+            return DetailsSerieViewModel(episodioDao, key) as T
         }
         throw IllegalArgumentException("Classe ViewModel desconhecida.")
     }

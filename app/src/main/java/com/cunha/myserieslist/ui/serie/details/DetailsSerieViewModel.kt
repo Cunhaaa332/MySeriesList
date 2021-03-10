@@ -10,13 +10,15 @@ import com.cunha.myserieslist.model.Episodio
 import com.cunha.myserieslist.model.Serie
 import kotlinx.coroutines.launch
 
-class DetailsSerieViewModel(/*private val episodioDao: EpisodioDao, private val key: Long? = null*/) : ViewModel() {
+class DetailsSerieViewModel(private val episodioDao: EpisodioDao, private val key: String? = null) : ViewModel() {
     private val _episodios = MutableLiveData<List<Episodio>>()
     val episodios: LiveData<List<Episodio>> = _episodios
 
-    /*fun allepisodios() {
-        viewModelScope.launch {
-            _episodios.value = episodioDao.readEpisdioSerie(key!!)
+    fun allepisodios() {
+        episodioDao.readEpisdioSerie(key!!).addOnSuccessListener {
+            val episodiosFB = it.toObjects(Episodio::class.java)
+            _episodios.value = episodiosFB
         }
-    }*/
+
+    }
 }
