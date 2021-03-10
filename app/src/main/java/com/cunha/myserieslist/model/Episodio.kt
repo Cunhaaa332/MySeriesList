@@ -1,6 +1,7 @@
 package com.cunha.myserieslist.model
 
 import com.google.firebase.firestore.DocumentId
+import com.google.firebase.firestore.DocumentReference
 
 
 class Episodio(
@@ -9,7 +10,6 @@ class Episodio(
     val sinopse: String? = null,
     val nota: String? = null,
     val serieId : String? = null,
-    
     @DocumentId
     var id: String? = null
 ){

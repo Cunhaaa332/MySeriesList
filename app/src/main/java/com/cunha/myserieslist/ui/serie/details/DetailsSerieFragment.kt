@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
@@ -21,11 +22,6 @@ import kotlinx.android.synthetic.main.list_serie_fragment.*
 import kotlinx.coroutines.launch
 
 class DetailsSerieFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = DetailsSerieFragment()
-    }
-
     private lateinit var viewModel: DetailsSerieViewModel
 
     override fun onCreateView(
@@ -34,7 +30,6 @@ class DetailsSerieFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.details_serie_fragment, container, false)
 
-        val episodioDao = EpisodioDaoFirestore()
         val key: String? = SerieUtil.serieSelecionada?.id
         val detailsSerieFragmentViewModelFactory = DetailsSerieFragmentViewModelFactory(EpisodioDaoFirestore(), key)
         viewModel = ViewModelProvider(
@@ -71,7 +66,8 @@ class DetailsSerieFragment : Fragment() {
             findNavController().navigate(R.id.formSerieFragment)
         }
         fabDeleteSerie.setOnClickListener{
-                deletarSerie(SerieUtil.serieSelecionada!!)
+                viewModel.deleteEpisodes()
+                SerieDaoFirestore().delete(SerieUtil.serieSelecionada!!)
                 findNavController().popBackStack()
 
         }
@@ -88,13 +84,4 @@ class DetailsSerieFragment : Fragment() {
         textViewNotaSerie.setText(serie.nota)
         textViewIDSerie.setText(serie.id)
     }
-
-    private fun deletarSerie(serie: Serie){
-       // val sereiDao = AppDatabase.getInstance(requireContext().applicationContext).serieDao()
-       // val episodioDao = AppDatabase.getInstance(requireContext().applicationContext).episodioDao()
-      //  sereiDao.delete(serie)
-      //  episodioDao.deleteEpisodesOfSerie(serie.id)
-        SerieDaoFirestore().delete(serie)
-    }
-
 }

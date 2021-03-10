@@ -26,8 +26,4 @@ class EpisodioDaoFirestore: EpisodioDao {
     override fun readEpisdioSerie(key: String): Task<QuerySnapshot> {
        return collection.whereEqualTo("serieId", key).get()
     }
-
-    override fun deleteEpisodesOfSerie(key: String?) {
-        //return
-    }
 }

@@ -32,7 +32,6 @@ class DetailsEpisodioFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (EpisodioUtil.episodioSelecionado != null)
-
             preencherDetails(EpisodioUtil.episodioSelecionado!!)
 
 

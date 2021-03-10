@@ -1,5 +1,6 @@
 package com.cunha.myserieslist.ui.serie.list
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,10 +18,7 @@ class ListSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
             val seriesFB = it.toObjects(Serie::class.java)
             _series.value = seriesFB
         }.addOnFailureListener {
-
+            Log.i("ListSerieFrag", "${it.message}")
         }
-        /*viewModelScope.launch {
-            _series.value = serieDao.all()
-        }*/
     }
 }

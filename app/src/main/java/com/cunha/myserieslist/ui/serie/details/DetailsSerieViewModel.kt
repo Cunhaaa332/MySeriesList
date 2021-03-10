@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cunha.myserieslist.database.EpisodioDao
+import com.cunha.myserieslist.database.EpisodioDaoFirestore
 import com.cunha.myserieslist.database.SerieDao
 import com.cunha.myserieslist.model.Episodio
 import com.cunha.myserieslist.model.Serie
@@ -19,6 +20,11 @@ class DetailsSerieViewModel(private val episodioDao: EpisodioDao, private val ke
             val episodiosFB = it.toObjects(Episodio::class.java)
             _episodios.value = episodiosFB
         }
+    }
 
+    fun deleteEpisodes(){
+        for (episodio in episodios.value!!.iterator()){
+            EpisodioDaoFirestore().delete(episodio)
+        }
     }
 }

@@ -21,5 +21,5 @@ interface EpisodioDao {
      fun readEpisdioSerie(key: String): Task<QuerySnapshot>
 
 
-     fun deleteEpisodesOfSerie(key: String?)
+     //fun deleteEpisodesOfSerie(key: String?): Task<Void>
 }
