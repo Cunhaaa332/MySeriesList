@@ -35,13 +35,18 @@ class FormSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
 
         val serie = Serie(nome, data, sinopse, nota, foto)
 
-        serieDao.insertOrUpdate(serie).addOnSuccessListener {
-            _status.value = true
-            _message.value = "Persistência realizada com êxito!"
-        }.addOnFailureListener{
-            _message.value = "Falha na persistência!"
-            Log.e("SerieDaoFirebase", "${it.message}")
-        }
+         if(SerieUtil.serieSelecionada != null){
+             serie.id = SerieUtil.serieSelecionada!!.id
+             serieDao.edit(serie)
+         }else{
+             serieDao.insertOrUpdate(serie).addOnSuccessListener {
+                 _status.value = true
+                 _message.value = "Persistência realizada com êxito!"
+             }.addOnFailureListener{
+                 _message.value = "Falha na persistência!"
+                 Log.e("SerieDaoFirebase", "${it.message}")
+             }
+         }
                 //if(SerieUtil.serieSelecionada != null) {
                  //   serie.id = SerieUtil.serieSelecionada!!.id
                   //  serieDao.update(serie)

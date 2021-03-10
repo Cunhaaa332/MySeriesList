@@ -89,6 +89,7 @@ class DetailsSerieFragment : Fragment() {
         textViewDataSerie.setText(serie.dataLancamento)
         textViewSinopseSerie.setText(serie.sinopse)
         textViewNotaSerie.setText(serie.nota)
+        textViewIDSerie.setText(serie.id)
     }
 
     private fun deletarSerie(serie: Serie){
