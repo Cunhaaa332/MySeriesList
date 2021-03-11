@@ -29,7 +29,7 @@ class CadastroFragment : Fragment() {
         })
 
         viewModel.msg.observe(viewLifecycleOwner, Observer {
-            if (it.isNullOrBlank())
+            if (!it.isNullOrBlank())
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
@@ -43,11 +43,16 @@ class CadastroFragment : Fragment() {
             val email = editTextCadastroEmail.text.toString()
             val senha = editTextCadastroSenha.text.toString()
             val resenha = editTextCadastroConfirmaSenha.text.toString()
-            if(senha == resenha){
-                viewModel.salvarCadastro(email, senha)
+            if(senha.length >= 6){
+                if(senha == resenha){
+                    viewModel.salvarCadastro(email, senha)
+                }else{
+                    Toast.makeText(requireContext(), "Senhas não batem.", Toast.LENGTH_SHORT).show()
+                }
             }else{
-                Toast.makeText(requireContext(), "Senhas não batem.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Senha deve conter mais de 6 caracteres.", Toast.LENGTH_SHORT).show()
             }
+
 
         }
     }
