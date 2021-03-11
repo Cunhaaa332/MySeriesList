@@ -13,6 +13,8 @@ import com.cunha.myserieslist.R
 import com.cunha.myserieslist.adapter.RecyclerListSerie
 import com.cunha.myserieslist.database.SerieDaoFirestore
 import com.cunha.myserieslist.database.SerieUtil
+import com.cunha.myserieslist.database.UsuarioFirebaseDao
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.list_serie_fragment.*
 
 class ListSerieFragment : Fragment() {
@@ -23,6 +25,7 @@ class ListSerieFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        verificaUsuario()
 
         val view = inflater.inflate(R.layout.list_serie_fragment, container, false)
 
@@ -40,14 +43,25 @@ class ListSerieFragment : Fragment() {
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         fabFormSerie.setOnClickListener{
             SerieUtil.serieSelecionada = null
             findNavController().navigate(R.id.formSerieFragment)
         }
         fabConfig.setOnClickListener{
             findNavController().navigate(R.id.configFragment)
+        }
+        fabPerfil.setOnClickListener{
+            findNavController().navigate(R.id.perfilUsuarioFragment)
+        }
+    }
+
+    fun verificaUsuario(){
+        val fireBaseUser = FirebaseAuth.getInstance().currentUser
+        if(fireBaseUser == null){
+            findNavController().popBackStack()
         }
     }
 

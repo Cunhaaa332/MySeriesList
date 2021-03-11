@@ -40,12 +40,15 @@ class CadastroFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnCadastroCadastrar.setOnClickListener {
-            val email = editTextCadastroEmail.text.toString()
+
             val senha = editTextCadastroSenha.text.toString()
             val resenha = editTextCadastroConfirmaSenha.text.toString()
             if(senha.length >= 6){
                 if(senha == resenha){
-                    viewModel.salvarCadastro(email, senha)
+                    val email = editTextCadastroEmail.text.toString()
+                    val nome = editTextTextCadastroNome.text.toString()
+                    val telefone = editTextCadastroTelefone.text.toString()
+                    viewModel.salvarCadastro(email, senha, nome, telefone)
                 }else{
                     Toast.makeText(requireContext(), "Senhas não batem.", Toast.LENGTH_SHORT).show()
                 }

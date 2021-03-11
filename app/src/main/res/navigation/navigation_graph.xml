@@ -45,4 +45,9 @@
         android:name="com.cunha.myserieslist.ui.usuario.cadastro.CadastroFragment"
         android:label="cadastro_fragment"
         tools:layout="@layout/cadastro_fragment" />
+    <fragment
+        android:id="@+id/perfilUsuarioFragment"
+        android:name="com.cunha.myserieslist.ui.usuario.perfil.PerfilUsuarioFragment"
+        android:label="perfil_usuario_fragment"
+        tools:layout="@layout/perfil_usuario_fragment" />
 </navigation>
