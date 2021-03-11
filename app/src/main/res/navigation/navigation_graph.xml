@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/listSerieFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/listSerieFragment"
@@ -35,4 +35,14 @@
         android:name="com.cunha.myserieslist.ui.episodio.details.DetailsEpisodioFragment"
         android:label="details_episodio_fragment"
         tools:layout="@layout/details_episodio_fragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.cunha.myserieslist.ui.usuario.login.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" />
+    <fragment
+        android:id="@+id/cadastroFragment"
+        android:name="com.cunha.myserieslist.ui.usuario.cadastro.CadastroFragment"
+        android:label="cadastro_fragment"
+        tools:layout="@layout/cadastro_fragment" />
 </navigation>
