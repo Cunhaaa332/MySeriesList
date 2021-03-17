@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
-import com.cunha.myserieslist.database.AppDatabase
 import com.cunha.myserieslist.database.EpisodioDaoFirestore
 import com.cunha.myserieslist.database.EpisodioUtil
-import com.cunha.myserieslist.database.SerieUtil
 import com.cunha.myserieslist.model.Episodio
 import kotlinx.android.synthetic.main.form_episodio_fragment.*
 
