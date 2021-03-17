@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.cunha.myserieslist.R
+import com.cunha.myserieslist.api.model.SerieApi
 import com.cunha.myserieslist.database.*
 import com.cunha.myserieslist.model.Episodio
 import com.cunha.myserieslist.model.Serie
@@ -29,7 +31,6 @@ class DetailsSerieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.details_serie_fragment, container, false)
-
         val key: String? = SerieUtil.serieSelecionada?.id
         val detailsSerieFragmentViewModelFactory = DetailsSerieFragmentViewModelFactory(EpisodioDaoFirestore(), key)
         viewModel = ViewModelProvider(
@@ -48,6 +49,14 @@ class DetailsSerieFragment : Fragment() {
                 findNavController().navigate(R.id.detailsEpisodioFragment)
             }
         }
+        viewModel.serieApi.observe(viewLifecycleOwner, Observer {
+            if(SerieUtil.serieSelecionada!!.nome == it.Title){
+                textViewImdbRating.setText(it.toString())
+            }else{
+                textViewImdbRating.setText("Série não encontrada no Imdb.")
+            }
+
+        })
         viewModel.allepisodios()
         return view
     }
