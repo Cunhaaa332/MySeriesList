@@ -9,8 +9,8 @@ object ApiClient {
     private var instance: Retrofit? = null
     private fun getInstance(): Retrofit{
         if (instance == null){
-            instance = Retrofit.Builder().baseUrl("http://www.omdbapi.com").addConverterFactory(GsonConverterFactory.create()).build()
-            //"http://www.omdbapi.com/?apikey=6fcbeee2&type=series"
+            instance = Retrofit.Builder().baseUrl("http://api.tvmaze.com").addConverterFactory(GsonConverterFactory.create()).build()
+            // "http://www.omdbapi.com"
         }
         return instance as Retrofit
     }

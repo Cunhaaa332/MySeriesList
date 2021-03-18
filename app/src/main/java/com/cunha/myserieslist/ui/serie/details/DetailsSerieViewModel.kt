@@ -1,5 +1,6 @@
 package com.cunha.myserieslist.ui.serie.details
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,12 +37,18 @@ class DetailsSerieViewModel(private val episodioDao: EpisodioDao, private val ke
     fun pegaImdb(){
         var serieNova: SerieApi? = null
         viewModelScope.launch {
-            var a = ApiClient.getProjectService()
-            var nome = SerieUtil.serieSelecionada!!.nome
-            var data = SerieUtil.serieSelecionada!!.dataLancamento
-            serieNova = a.meAjuda("Vikings","2013", "6fcbeee2", "series")
-                    //a.searchSerie(nome, data)
-            _serieApi.value = serieNova
+            try{
+                var a = ApiClient.getProjectService()
+                var nome = SerieUtil.serieSelecionada!!.nome
+                var data = SerieUtil.serieSelecionada!!.dataLancamento
+                serieNova = a.searchSerie(nome)
+                _serieApi.value = serieNova
+            }catch (e:Exception){
+                Log.i("SerieApi", "${e.message}")
+            }
+
+            //meAjuda("Vikings","2013", "6fcbeee2", "series")
+
         }
     }
 

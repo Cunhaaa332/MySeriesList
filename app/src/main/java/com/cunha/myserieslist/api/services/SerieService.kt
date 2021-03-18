@@ -7,15 +7,16 @@ import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface SerieService {
-//    @GET("&t={t}&y={y}")
-//    suspend fun searchSerie(
-//        @Path("t")title: String?,
-//        @Path("y")year:String?)
+    @GET("singlesearch/shows?")
+    suspend fun searchSerie(
+            @Query("q")title: String?,
+            //@Query("y")year:String?
+            ) : SerieApi
 
-    @GET("?apikey={apiKey}&type={type}&t={title}&y={year}")
-    suspend fun meAjuda(
-        @Path("title") title: String,
-        @Path("year") year: String,
-        @Path ("apikey") apiKey: String,
-        @Path ("type") type: String,): SerieApi
+//    @GET("?apikey={apiKey}&type={type}&t={title}&y={year}")
+//    suspend fun meAjuda(
+//        @Path("title") title: String,
+//        @Path("year") year: String,
+//        @Path ("apikey") apiKey: String,
+//        @Path ("type") type: String,): SerieApi
 }

@@ -50,8 +50,8 @@ class DetailsSerieFragment : Fragment() {
             }
         }
         viewModel.serieApi.observe(viewLifecycleOwner, Observer {
-            if(SerieUtil.serieSelecionada!!.nome == it.Title){
-                textViewImdbRating.setText(it.toString())
+            if(SerieUtil.serieSelecionada!!.nome == it.name){
+                textViewImdbRating.setText(it.rating!!.average.toString())
             }else{
                 textViewImdbRating.setText("Série não encontrada no Imdb.")
             }
