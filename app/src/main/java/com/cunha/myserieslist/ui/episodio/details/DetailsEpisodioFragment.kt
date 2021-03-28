@@ -53,6 +53,7 @@ class DetailsEpisodioFragment : Fragment() {
         textViewNumeroEpisodio.setText(episodio.numeroEp)
         textViewSinopseEpisodio.setText(episodio.sinopse)
         textViewSNEpisodio.setText(SerieUtil.serieSelecionada!!.nome)
+        textViewNotaEpisodio.setText(episodio.nota)
 
     }
 

@@ -44,8 +44,6 @@ class PerfilUsuarioFragment : Fragment() {
         textViewUserNome.text = usuario.nome
         textViewUserTelefone.text = usuario.telefone
         textViewUserEmail.text = usuario.firebaseUser!!.email
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

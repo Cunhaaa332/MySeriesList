@@ -14,11 +14,15 @@ class ListSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
     val series: LiveData<List<Serie>> = _series
 
     fun attListSeries() {
-        serieDao.all().addOnSuccessListener {
-            val seriesFB = it.toObjects(Serie::class.java)
-            _series.value = seriesFB
-        }.addOnFailureListener {
-            Log.i("ListSerieFrag", "${it.message}")
+        serieDao.all().addSnapshotListener{ value, error ->
+            if(error != null){
+                Log.i("FirebaseFirestore", "${error.message}")
+            } else {
+                if (value != null && !value.isEmpty){
+                    _series.value = value.toObjects(Serie::class.java)
+                }
+            }
+
         }
     }
 }

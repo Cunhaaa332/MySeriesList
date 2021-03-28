@@ -2,6 +2,7 @@ package com.cunha.myserieslist.database
 
 import com.cunha.myserieslist.model.Serie
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -10,8 +11,10 @@ import com.google.firebase.firestore.QuerySnapshot
 class SerieDaoFirestore : SerieDao {
 
     private val collection = FirebaseFirestore.getInstance().collection("series")
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun insertOrUpdate(serie: Serie): Task<DocumentReference> {
+        serie.usuarioId = firebaseAuth.currentUser.uid
         return collection.add(serie)
     }
 
@@ -19,8 +22,8 @@ class SerieDaoFirestore : SerieDao {
         return collection.document(serie.id!!).delete()
     }
 
-    override  fun all(): Task<QuerySnapshot> {
-        return collection.get()
+    override  fun all(): Query {
+        return collection.whereEqualTo("usuarioId", firebaseAuth.currentUser.uid)
     }
 
     override fun read(key: String): Query {

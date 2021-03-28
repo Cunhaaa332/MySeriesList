@@ -13,7 +13,7 @@ interface SerieDao {
 
      fun delete(serie: Serie) : Task<Void>
 
-     fun all(): Task<QuerySnapshot>
+     fun all(): Query
 
      fun read(key: String): Query
 

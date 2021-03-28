@@ -14,10 +14,6 @@ import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(

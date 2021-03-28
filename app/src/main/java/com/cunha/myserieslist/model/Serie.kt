@@ -10,6 +10,7 @@ class Serie (
     val sinopse: String? = null,
     val nota: String? = null,
     val foto: String? = null,
+    var usuarioId: String? = null,
     @DocumentId
     var id: String? = null
 

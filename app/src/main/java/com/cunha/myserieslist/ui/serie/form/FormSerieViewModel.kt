@@ -37,6 +37,7 @@ class FormSerieViewModel(private val serieDao: SerieDao) : ViewModel() {
 
          if(SerieUtil.serieSelecionada != null){
              serie.id = SerieUtil.serieSelecionada!!.id
+             serie.usuarioId = SerieUtil.serieSelecionada!!.usuarioId
              serieDao.edit(serie)
          }else{
              serieDao.insertOrUpdate(serie).addOnSuccessListener {
